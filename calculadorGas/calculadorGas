@@ -1,0 +1,55 @@
+class Gas {
+    constructor(presion, volumen, temperatura) {
+        this.presion = presion; 
+        this.volumen = volumen; 
+        this.temperatura = temperatura; 
+        this.R = 0.0821; //Constante de los gases ideales
+    }
+
+    getPresion() {
+        return this.presion;
+    }
+
+    getVolumen() {
+        return this.volumen;
+    }
+
+    getTemperatura() {
+        return this.temperatura;
+    }
+
+    setPresion(presion) {
+        this.presion = presion;
+    }
+
+    setVolumen(volumen) {
+        this.volumen = volumen;
+    }
+
+    setTemperatura(temperatura) {
+        this.temperatura = temperatura;
+    }
+    //calculaMoles que es la precion * el volumen dividido la constante de los gases ideales
+    calcularMoles() {
+        return (this.presion * this.volumen) / (this.R * this.temperatura);
+    }
+    //calcula la masa obteniendo los moles con el metodo calcularMoles
+    calcularMasa(masaMolecular) {
+        const moles = this.calcularMoles();
+        // el total de la masa es moles por masa molecular
+        return moles * masaMolecular;
+    }
+}
+
+// creamos la intancia del gas
+const gas = new Gas(2, 5, 300);
+
+gas.setPresion(3)
+gas.setVolumen(8)
+gas.setTemperatura(400)
+
+
+const masaMolecularCO2 = 44; 
+const masaGas = gas.calcularMasa(masaMolecularCO2);
+
+console.log(`La masa del gas es: ${masaGas} gramos`);
